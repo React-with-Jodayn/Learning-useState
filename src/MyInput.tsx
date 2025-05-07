@@ -1,7 +1,10 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 export default function MyInput() {
   const [myInput, setMyInput] = useState("");
-
+  useEffect(() => {
+    const savedInput = localStorage.getItem("MyInput");
+    setMyInput(savedInput ? JSON.parse(savedInput) : "");
+  }, []);
   return (
     <div
       style={{
@@ -16,13 +19,11 @@ export default function MyInput() {
         value={myInput}
         type="text"
         maxLength={10}
-        onChange={(event: ChangeEvent<HTMLInputElement>) =>
-          setMyInput(event.target.value)
-        }
+        onChange={(event: ChangeEvent<HTMLInputElement>) => {
+          setMyInput(event.target.value);
+          localStorage.setItem("MyInput", JSON.stringify(event.target.value));
+        }}
       />
     </div>
   );
 }
-// function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-//     setMyInput(event.target.value);
-//   }

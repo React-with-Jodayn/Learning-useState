@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 
 export default function MyForm() {
   const formStyle = {
@@ -13,7 +13,10 @@ export default function MyForm() {
     studentStauts: "",
     country: "",
   });
-
+  useEffect(() => {
+    const savedInputs = localStorage.getItem("formData");
+    setFormInputs(savedInputs ? JSON.parse(savedInputs) : "");
+  }, []);
   return (
     <>
       <form
@@ -23,6 +26,7 @@ export default function MyForm() {
           event.preventDefault();
           const formData = { ...formInputs };
           console.log(formData);
+          localStorage.setItem("formData", JSON.stringify(formData));
         }}
       >
         <label htmlFor="name123">Name : </label>
@@ -48,7 +52,6 @@ export default function MyForm() {
               password: event.target.value,
               studentStauts: formInputs.studentStauts,
               country: formInputs.country,
-              //    استخدام هاي الطريقة عبارة عن مشكلة طرررررررررمة
             })
           }
         />

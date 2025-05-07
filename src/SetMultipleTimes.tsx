@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function SetMultipleTimes() {
   const [counter, setCounter] = useState(0);
   function handleCounter() {
@@ -6,15 +6,14 @@ export default function SetMultipleTimes() {
     setCounter((s) => {
       return s + 1;
     });
+    localStorage.setItem("counter", JSON.stringify(counter + 1));
   }
-
+  useEffect(() => {
+    const savedCounter = localStorage.getItem("counter");
+    setCounter(savedCounter ? JSON.parse(savedCounter) : 0);
+  }, []);
   return (
-    <div
-      style={{
-        border: "4px double #880303",
-        padding: "18px 0px",
-      }}
-    >
+    <div className="border-4 border-double border-red-900 py-5 px-0">
       <p>{counter}</p>
       <button onClick={handleCounter}>+</button>
     </div>
