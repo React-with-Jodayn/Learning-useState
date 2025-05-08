@@ -4,6 +4,8 @@ import MyInput from "./MyInput";
 import MyForm from "./MyForm";
 import UsingArraysAsStateInTheComponent from "./UsingArraysAsStateInTheComponent";
 import SetMultipleTimes from "./SetMultipleTimes";
+import Weather from "./Weather";
+import LocationWeather from "./LocationWeather";
 
 function App() {
   return (
@@ -14,8 +16,11 @@ function App() {
         <MyInput />
         <MyForm />
         <UsingArraysAsStateInTheComponent />
+        <LocationWeather />
+        <Weather />
       </div>
       <SetMultipleTimes />
+
       <button
         onClick={() => {
           localStorage.clear();

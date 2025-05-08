@@ -15,7 +15,18 @@ export default function MyForm() {
   });
   useEffect(() => {
     const savedInputs = localStorage.getItem("formData");
-    setFormInputs(savedInputs ? JSON.parse(savedInputs) : "");
+    setFormInputs(
+      savedInputs
+        ? JSON.parse(savedInputs)
+        : {
+            name: "",
+            password: "",
+            generalInfo: "",
+            student: false,
+            studentStauts: "",
+            country: "",
+          }
+    );
   }, []);
   return (
     <>

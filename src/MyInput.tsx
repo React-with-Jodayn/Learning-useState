@@ -6,13 +6,7 @@ export default function MyInput() {
     setMyInput(savedInput ? JSON.parse(savedInput) : "");
   }, []);
   return (
-    <div
-      style={{
-        background: "#be0000",
-        padding: "10px 0px",
-        marginBottom: "10px",
-      }}
-    >
+    <div className="py-2.5 px-0 bg-red-200 mb-2.5">
       <label htmlFor="sa">PLease enter your name: </label>
       <input
         id="sa"
